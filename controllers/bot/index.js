@@ -15,6 +15,9 @@ const p = path.join(
 
 const changeContent = text => {
   fs.readFile(p, (err, content) => {
+    if (err) {
+      return;
+    }
     const contentJson = JSON.parse(content);
     contentJson.text = text;
     fs.writeFile(p, JSON.stringify(contentJson), err => {
@@ -28,7 +31,7 @@ const pledBot = () => {
     const chatId = msg.chat.id;
     const text = msg.text;
     changeContent(text);
-    // bot.sendMessage(chatId, "Content changed");
+    bot.sendMessage(chatId, "Content changed");
   });
 };
 
