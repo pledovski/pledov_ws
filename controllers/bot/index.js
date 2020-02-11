@@ -3,8 +3,8 @@ const Content = require("../../models/content");
 const TelegramBot = require("node-telegram-bot-api");
 dotenv.config({ path: "./config/config.env" });
 
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
-bot.on("polling_error", err => console.log(err));
+// const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+// bot.on("polling_error", err => console.log(err));
 
 const addNewContent = async text => {
   const content = await Content.findOneAndUpdate({}, { pageText: text });
