@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Bot
-// pledBot();
+pledBot();
 
 //Mount view routes
 app.use("/", indexView);
