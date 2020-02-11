@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+const pledBot = require("./controllers/bot/index");
+
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 
@@ -20,6 +22,9 @@ app.use(bodyParser.json());
 
 //Static files
 app.use(express.static(path.join(__dirname, "public")));
+
+// Bot
+pledBot();
 
 //Mount view routes
 app.use("/", indexView);
