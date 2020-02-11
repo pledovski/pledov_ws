@@ -9,7 +9,7 @@
   width: 225vw;
   height: 225vh;
   position: fixed;
-  top: -50%;
+  top: -62.5%;
   left: -62.5%;
   z-index: -1;
   padding: 0;
@@ -18,7 +18,8 @@
 
 .page-text {
   text-align: center;
-  padding-top: 50vh; }
+  padding-top: 50vh;
+  color: black; }
 
 @keyframes rotation {
   from {
