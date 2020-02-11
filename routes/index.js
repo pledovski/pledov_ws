@@ -1,12 +1,10 @@
-const pageContent = require("../data/index.json");
 const express = require("express");
 const router = express.Router();
+const Content = require("../models/content");
 
-router.route("/").get((req, res, next) => {
-  res.render("index", {
-    pageTitle: pageContent.title,
-    pageText: pageContent.text
-  });
+router.route("/").get(async (req, res, next) => {
+  const content = await Content.findOne({});
+  res.render("index", content);
 });
 
 module.exports = router;

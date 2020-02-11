@@ -2,8 +2,12 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const path = require("path");
+const connectDB = require("./config/db");
 
 const pledBot = require("./controllers/bot/index");
+
+// Connect DB
+connectDB();
 
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
