@@ -27,17 +27,15 @@ body {
   justify-content: center;
   font-family: var(--font-name);
   height: 100vh;
+  width: 100vw;
   flex-direction: column;
 }
 
 .c-rainbow {
-  width: 100%;
   counter-reset: rainbow;
   position: relative;
-  display: block;
   list-style: none;
-  padding: 0;
-  margin-left: 45%;
+  padding: 4px;
 }
 
 .c-rainbow__layer {
