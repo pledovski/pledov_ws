@@ -4,13 +4,12 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const connectDB = require("./config/db");
 
-const pledBot = require("./controllers/bot/index");
+// const pledBot = require("./controllers/bot/index");
+// Load env vars
+dotenv.config({ path: "./config/config.env" });
 
 // Connect DB
 connectDB();
-
-// Load env vars
-dotenv.config({ path: "./config/config.env" });
 
 const app = express();
 
@@ -28,7 +27,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Bot
-pledBot();
+// pledBot();
 
 //Mount view routes
 app.use("/", indexView);
