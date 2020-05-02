@@ -17,7 +17,7 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 
 // Routes
-const indexView = require("./routes/index");
+const viewRoutes = require("./routes/views");
 
 // Init middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // pledBot();
 
 //Mount view routes
-app.use("/", indexView);
+app.use("/", viewRoutes);
 
 const PORT = process.env.PORT || 5000;
 

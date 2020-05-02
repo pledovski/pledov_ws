@@ -7,4 +7,8 @@ router.route("/").get(async (req, res, next) => {
   res.render("index", content);
 });
 
+router.route("/camshow/frame").get(async (req, res, next) => {
+  res.render("./camshow/frame");
+});
+
 module.exports = router;
