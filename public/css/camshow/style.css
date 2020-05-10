@@ -17,6 +17,7 @@
 
 html,
 body {
+  margin: 0;
   font-size: 24px;
 }
 
@@ -117,4 +118,34 @@ body {
   50% {
     transform: translatey(calc(var(--axis-y) * -1));
   }
+}
+
+.rightCSS {
+  background: #d1262e;
+  color: white;
+  overflow: hidden;
+  width: 100vw;
+  position: absolute;
+  bottom: 10px;
+}
+.rightCSS p {
+  position: relative;
+  animation: CSSright linear 18s infinite;
+}
+
+@keyframes CSSright {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 100%;
+  }
+}
+
+.rightCSS:hover div {
+  animation-play-state: paused;
+}
+
+input {
+  border: 1px solid green;
 }

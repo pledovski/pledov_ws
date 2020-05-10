@@ -11,4 +11,8 @@ router.route("/camshow/frame").get(async (req, res, next) => {
   res.render("./camshow/frame");
 });
 
+router.route("*").get(async (req, res, next) => {
+  res.send("<h1>PAGE NOT FOUND</h1>");
+});
+
 module.exports = router;
