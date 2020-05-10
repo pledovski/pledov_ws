@@ -1,8 +1,6 @@
 const CHAR_RETURN = 13;
 
-const socket = new WebSocket(
-  `wss://${window.location.hostname}:5000/camshow/frame`
-);
+const socket = new WebSocket(`wss://${window.location.hostname}/camshow/frame`);
 console.log(window.location.hostname);
 const chat = document.getElementById("chat");
 const msg = document.getElementById("msg");
