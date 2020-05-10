@@ -1,6 +1,9 @@
 const CHAR_RETURN = 13;
 
-const socket = new WebSocket("ws://127.0.0.1:5000/camshow/frame");
+const socket = new WebSocket(
+  `ws://${window.location.hostname}:5000/camshow/frame`
+);
+console.log(window.location.hostname);
 const chat = document.getElementById("chat");
 const msg = document.getElementById("msg");
 const stripe = document.getElementById("stripe");
