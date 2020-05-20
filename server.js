@@ -1,8 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const path = require("path");
 const connectDB = require("./config/db");
+const errorHandler = require("./middleware/error");
 
 const http = require("http");
 const WebSocketServer = require("websocket").server;
@@ -16,11 +18,20 @@ connectDB();
 
 const app = express();
 
+// Dev logging middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
 // Routes
-const viewRoutes = require("./routes/views");
+const camshow_views = require("./routes/camshow/views");
+
+const discogs = require("./routes/camshow/discogs");
+const records = require("./routes/camshow/records");
+const shows = require("./routes/camshow/shows");
 
 // Init middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +44,12 @@ app.use(express.static(path.join(__dirname, "public")));
 // pledBot();
 
 //Mount view routes
-app.use("/", viewRoutes);
+app.use("/camshow/discogs", discogs);
+app.use("/camshow/records", records);
+app.use("/camshow/shows", shows);
+app.use("/camshow", camshow_views);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

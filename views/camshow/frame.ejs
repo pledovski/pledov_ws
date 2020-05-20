@@ -8,10 +8,45 @@
     <title>Vinyl Shop On The Sofa</title>
   </head>
   <body>
-    <h1>Chat</h1>
-    <div id="chat"></div>
-    <input id="msg" type="text" />
-    <ul class="c-rainbow">
+    <!-- <script>
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: "2951985384847622",
+          cookie: true,
+          xfbml: true,
+          version: "v7.0",
+        });
+
+        FB.AppEvents.logPageView();
+      };
+
+      (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+    </script> -->
+
+    <div
+      class="bg-local h-48 w-48 flex flex-col justify-center rotate-340"
+      style="background-image: url(/src/frame/sale.svg);"
+    >
+      <p class="flex self-center text-white leading-6">Цена сейчас!</p>
+      <h1 class="flex self-center text-white leading-6 text-6xl mt-3">
+        290
+      </h1>
+      <p class="flex self-center text-white leading-6">грн</p>
+    </div>
+
+    <!-- <div id="chat"></div>
+    <input id="msg" type="text" /> -->
+    <!-- <ul class="c-rainbow">
       <li class="c-rainbow__layer c-rainbow__layer--white">
         СЛАДКИЙ ПИРОЖОК ❤️
       </li>
@@ -31,7 +66,7 @@
       <li class="c-rainbow__layer c-rainbow__layer--yellow">
         СЛАДКИЙ ПИРОЖОК ❤️
       </li>
-    </ul>
+    </ul> -->
 
     <div class="rightCSS li">
       <p id="stripe">
