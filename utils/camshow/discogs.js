@@ -1,3 +1,4 @@
+const ErrorResponse = require("../../utils/errorResponse");
 const Discogs = require("disconnect").Client;
 
 const get_release = async (release_id) => {
@@ -30,15 +31,17 @@ const get_price = async (release_id) => {
 };
 
 exports.create_record = async (req) => {
-  let release_id = req.body.discogs_uri.split("/").pop();
+  console.log(req.body);
+  let release_id = req.body.discogs_url.split("/").pop();
+
   let release_data = await get_release(release_id);
 
   let record_data = {};
-  record_data.show = req.body.show;
+  record_data.show_id = req.body.show_id;
   record_data.price = req.body.price;
+  record_data.discogs_url = req.body.discogs_url;
   record_data.condition = req.body.condition;
   record_data.release_id = release_id;
-  record_data.discogs_uri = req.body.discogs_uri;
   record_data.artist = release_data.artists_sort;
   record_data.title = release_data.title;
   record_data.style = release_data.styles[0];

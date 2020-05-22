@@ -1,5 +1,7 @@
 const asyncHandler = require("../../middleware/async");
+const ErrorResponse = require("../../utils/errorResponse");
 const Record = require("../../models/camshow/Record");
+const Show = require("../../models/camshow/Show");
 const { create_record } = require("../../utils/camshow/discogs");
 
 // @desc    Get records
@@ -27,6 +29,11 @@ exports.add_record = asyncHandler(async (req, res, next) => {
   let record = await create_record(req);
 
   record = await Record.create(record);
+
+  let show = await Show.findById(req.body.show_id);
+  show.records.push(record);
+  await show.save();
+  console.log(show);
 
   res.status(200).json({ success: true, data: record });
 });

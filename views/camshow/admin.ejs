@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/camshow/style.css" />
+    <title>Админка</title>
+  </head>
+  <body>
+    <div class="w-screen text-gray-900 bg-gray-200">
+      <div class="p-4 flex justify-between">
+        <h1 class="text-3xl">
+          <%= page_content.page_title %>
+        </h1>
+        <button
+          class="self-end uppercase shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded"
+        >
+          Create new
+        </button>
+      </div>
+      <div class="px-3 py-4 flex justify-center">
+        <table
+          class="w-full text-md bg-white shadow-md rounded mb-4"
+          id="shows-table"
+        >
+          <tbody>
+            <tr class="border-b">
+              <th class="text-left p-3 px-5">Name</th>
+              <th class="text-left p-3 px-5">Scheduled for</th>
+              <th class="text-left p-3 px-5">Records</th>
+              <th class="text-left p-3 px-5">Status</th>
+              <th class="text-left p-3 px-5">Actions</th>
+              <th></th>
+            </tr>
+            <% for (let show of page_content.shows_list) { %>
+            <tr class="border-b hover:bg-orange-100 bg-gray-100">
+              <td class="p-3 px-5">
+                <input
+                  type="text"
+                  value="<%= show.show_name %>"
+                  class="bg-transparent"
+                />
+              </td>
+              <td class="p-3 px-5">
+                <input
+                  type="text"
+                  value="<%= show.scheduled_for %>"
+                  class="bg-transparent"
+                />
+              </td>
+              <td class="p-3 px-5">
+                <p><%= show.records.count %></p>
+              </td>
+              <td class="p-3 px-5">
+                <select value="<%= show.status %>" class="bg-transparent">
+                  <option value="past">past</option>
+                  <option value="planned">planned</option>
+                  <option value="happening">happening</option>
+                </select>
+              </td>
+              <td class="p-3 px-5 flex justify-end">
+                <a
+                  href="/camshow/admin/shows/<%= show._id %>"
+                  class="w-16 mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Edit</a
+                >
+
+                <button
+                  type="submit"
+                  id="<%= show._id %>"
+                  class="w-16 text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline delete-btn"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script src="/js/admin.js"></script>
+  <script src="/js/utils/easy_http.js"></script>
+</html>

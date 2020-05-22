@@ -11,21 +11,17 @@ const ShowSchema = new mongoose.Schema({
       fb_stream_creds: {
         fb_stream_id: {
           type: String,
-          required: true,
         },
         fb_access_token: {
           type: String,
-          required: true,
         },
       },
       yt_stream_creds: {
         yt_stream_id: {
           type: String,
-          required: true,
         },
         yt_access_token: {
           type: String,
-          required: true,
         },
       },
     },
@@ -35,6 +31,7 @@ const ShowSchema = new mongoose.Schema({
       record: {
         type: mongoose.Schema.ObjectId,
         ref: "Record",
+        unique: true,
       },
     },
   ],
@@ -44,6 +41,11 @@ const ShowSchema = new mongoose.Schema({
   },
   scheduled_for: {
     type: Date,
+  },
+  status: {
+    type: String,
+    enum: ["past", "planned", "happening"],
+    default: "planned",
   },
 });
 

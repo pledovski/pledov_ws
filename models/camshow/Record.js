@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 
 const RecordSchema = new mongoose.Schema({
-  show: {
+  show_id: {
     type: mongoose.Schema.ObjectId,
     ref: "Show",
   },
   release_id: {
     type: String,
-    unique: true,
   },
-  discogs_uri: {
+  discogs_url: {
     type: String,
     required: [true, "Please enter a discogs URL"],
     match: [
@@ -33,7 +32,7 @@ const RecordSchema = new mongoose.Schema({
     type: Number,
     required: [true, " Please fill in the price"],
   },
-  price_discogs: {
+  discogs_price: {
     type: String,
   },
   condition: {
@@ -55,5 +54,7 @@ const RecordSchema = new mongoose.Schema({
     default: "inactive",
   },
 });
+
+RecordSchema.index({ show_id: 1, release_id: 1 }, { unique: true });
 
 module.exports = mongoose.model("Record", RecordSchema);

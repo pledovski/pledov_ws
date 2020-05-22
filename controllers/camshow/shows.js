@@ -1,11 +1,12 @@
 const asyncHandler = require("../../middleware/async");
-const errorResponse = require("../../utils/errorResponse");
+const ErrorResponse = require("../../utils/errorResponse");
+const Show = require("../../models/camshow/Show");
 
 // @desc    Get a show
 // @route   Get /camshow/shows/:show_id
 // @access  Private
 exports.get_show = asyncHandler(async (req, res, next) => {
-  let show = Show.findById(req.params.show_id);
+  let show = await Show.findById(req.params.show_id);
   res.status(200).json({ success: true, data: show });
 });
 
@@ -13,7 +14,7 @@ exports.get_show = asyncHandler(async (req, res, next) => {
 // @route   Get /camshow/shows/
 // @access  Private
 exports.get_all_shows = asyncHandler(async (req, res, next) => {
-  let show = Show.find();
+  let show = await Show.find();
   res.status(200).json({ success: true, data: show });
 });
 
@@ -30,16 +31,15 @@ exports.create_show = asyncHandler(async (req, res, next) => {
 // @route   DEL /camshow/shows/
 // @access  Private
 exports.delete_show = asyncHandler(async (req, res, next) => {
-  let show = await Show.findById(req.params.id);
-
+  console.log(req.params.show_id);
+  let show = await Show.findById(req.params.show_id);
   if (!show) {
     return next(
-      new ErrorResponse(`Show not found with id of ${req.params.id}`, 404)
+      new ErrorResponse(`Show not found with id of ${req.params.show_id}`, 404)
     );
   }
 
   show.remove();
-
   res.status(200).json({ success: true, data: {} });
 });
 
@@ -47,14 +47,14 @@ exports.delete_show = asyncHandler(async (req, res, next) => {
 // @route   PUT /camshow/records/
 // @access  Private
 exports.update_show = asyncHandler(async (req, res, next) => {
-  let show = await Show.findByIdAndUpdate(req.params.id, req.body, {
+  let show = await Show.findByIdAndUpdate(req.params.show_id, req.body, {
     new: true,
     runValidators: true,
   });
 
   if (!show) {
     return next(
-      new ErrorResponse(`Show not found with id of ${req.params.id}`, 404)
+      new ErrorResponse(`Show not found with id of ${req.params.show_id}`, 404)
     );
   }
 });
