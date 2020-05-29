@@ -33,23 +33,23 @@
             class="mx-2 flex-1 h-10 mt-2 form-select w-full"
             id="record-condition"
           >
-            <option value="lux">ЛЮКС</option>
-            <option value="best">УДОВЛ</option>
-            <option value="bodroe">БОДРОЕ</option>
+            <option value="ЛЮКС">ЛЮКС</option>
+            <option value="УДОВЛ">УДОВЛ</option>
+            <option value="БОДРОЕ">БОДРОЕ</option>
           </select>
           <button
             type="submit"
             id="add-record"
             class="my-2 py-2 text-sm w-32 focus:outline-none flex justify-center rounded font-bold cursor-pointer hover:bg-teal-700 hover:text-teal-100 bg-teal-100 text-teal-700 border duration-200 ease-in-out border-teal-600 transition"
           >
-            Submit
+            Add
           </button>
         </form>
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div
             class="inline-block min-w-full shadow rounded-lg overflow-hidden"
           >
-            <table class="min-w-full leading-normal">
+            <table class="min-w-full leading-normal" id="record-table">
               <thead>
                 <tr>
                   <th
@@ -70,7 +70,7 @@
                   <th
                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                   >
-                    Year
+                    Condition
                   </th>
                   <th
                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
@@ -82,11 +82,11 @@
                   >
                     Sell Price
                   </th>
-                  <!-- <th
+                  <th
                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                   >
-                    Status
-                  </th> -->
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -98,14 +98,14 @@
                     <div class="flex items-center">
                       <div class="flex-shrink-0 w-10 h-10">
                         <img
-                          class="w-full h-full rounded-full"
-                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                          class="w-full h-full rounded-lg"
+                          src="<%= record.image %>"
                           alt=""
                         />
                       </div>
                       <div class="ml-3">
                         <p class="text-gray-900 whitespace-no-wrap">
-                          Vera Carpenter
+                          <%= record.artist %>
                         </p>
                       </div>
                     </div>
@@ -113,13 +113,29 @@
                   <td
                     class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                   >
-                    <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      <%= record.title %>
+                    </p>
                   </td>
                   <td
                     class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                   >
                     <p class="text-gray-900 whitespace-no-wrap">
-                      Jan 21, 2020
+                      <%= record.label %>
+                    </p>
+                  </td>
+                  <td
+                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                  >
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      <%= record.condition %>
+                    </p>
+                  </td>
+                  <td
+                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                  >
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      <%= record.discogs_price %>
                     </p>
                   </td>
                   <td
@@ -132,8 +148,18 @@
                         aria-hidden
                         class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                       ></span>
-                      <span class="relative">Activo</span>
+                      <span class="relative"><%= record.price %></span>
                     </span>
+                  </td>
+                  <td
+                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                  >
+                    <button
+                      id="<%= record._id %>"
+                      class="inline-flex items-center justify-center px-4 py-2 text-base leading-5 rounded-md border font-medium shadow-sm transition ease-in-out duration-150 focus:outline-none focus:shadow-outline bg-red-600 border-red-600 text-gray-100 hover:bg-red-500 hover:border-red-500 hover:text-gray-100 delete-record-btn"
+                    >
+                      X
+                    </button>
                   </td>
                 </tr>
                 <% } %>

@@ -31,10 +31,10 @@ const get_price = async (release_id) => {
 };
 
 exports.create_record = async (req) => {
-  console.log(req.body);
   let release_id = req.body.discogs_url.split("/").pop();
 
   let release_data = await get_release(release_id);
+  console.log(req.body);
 
   let record_data = {};
   record_data.show_id = req.body.show_id;
@@ -46,6 +46,7 @@ exports.create_record = async (req) => {
   record_data.title = release_data.title;
   record_data.style = release_data.styles[0];
   record_data.year = release_data.released;
+  record_data.image = release_data.images[0].uri;
 
   // Debt
   // record_data.price_discogs = release_data.suggested_price;

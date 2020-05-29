@@ -8,11 +8,8 @@ const {
   update_record,
 } = require("../../controllers/camshow/records");
 
-router
-  .route("/")
-  .get(get_all_records)
-  .post(add_record)
-  .delete(delete_record)
-  .put(update_record);
+router.route("/").get(get_all_records).post(add_record).put(update_record);
+
+router.route("/:record_id").delete(delete_record);
 
 module.exports = router;

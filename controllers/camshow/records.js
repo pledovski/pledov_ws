@@ -30,11 +30,6 @@ exports.add_record = asyncHandler(async (req, res, next) => {
 
   record = await Record.create(record);
 
-  let show = await Show.findById(req.body.show_id);
-  show.records.push(record);
-  await show.save();
-  console.log(show);
-
   res.status(200).json({ success: true, data: record });
 });
 
@@ -42,11 +37,11 @@ exports.add_record = asyncHandler(async (req, res, next) => {
 // @route   PUT /camshow/records/
 // @access  Private
 exports.delete_record = asyncHandler(async (req, res, next) => {
-  let record = await Record.findById(req.body.record_id);
+  let record = await Record.findById(req.params.record_id);
 
   if (!record) {
     return next(
-      new ErrorResponse(`No record with the id of ${req.body.record_id}`),
+      new ErrorResponse(`No record with the id of ${req.params.record_id}`),
       404
     );
   }

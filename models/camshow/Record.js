@@ -26,7 +26,7 @@ const RecordSchema = new mongoose.Schema({
     type: String,
   },
   year: {
-    type: Date,
+    type: String,
   },
   price: {
     type: Number,
@@ -52,6 +52,9 @@ const RecordSchema = new mongoose.Schema({
     type: String,
     enum: ["inactive", "active"],
     default: "inactive",
+  },
+  image: {
+    type: String,
   },
 });
 
