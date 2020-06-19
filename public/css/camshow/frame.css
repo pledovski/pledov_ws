@@ -1,0 +1,86 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+body {
+  width: 1280px;
+  height: 720px; }
+
+.frame {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+  .frame > img {
+    position: absolute; }
+
+.left-block {
+  position: absolute;
+  z-index: 10;
+  width: 20%;
+  height: 100%;
+  float: left;
+  top: 160px;
+  left: 40px; }
+  .left-block__title {
+    position: absolute;
+    color: white;
+    font-size: 22px;
+    line-height: 27px;
+    top: 8px;
+    left: 20px; }
+  .left-block__description {
+    position: absolute;
+    top: 110px;
+    left: 20px;
+    font-size: 28px; }
+  .left-block__price {
+    position: absolute;
+    top: 155px;
+    left: 20px;
+    font-size: 22px; }
+    .left-block__price--num {
+      position: absolute;
+      top: 185px;
+      left: 20px;
+      font-size: 48px; }
+  .left-block .bage {
+    position: absolute;
+    top: 280px;
+    right: -10px;
+    transform: rotate(-15deg);
+    text-align: center; }
+    .left-block .bage > p {
+      font-size: 24px;
+      color: white; }
+    .left-block .bage > h2 {
+      font-size: 56px;
+      color: white;
+      line-height: 40px; }
+  .left-block .condition {
+    position: absolute;
+    top: 420px;
+    left: 20px;
+    text-align: center;
+    color: white;
+    font-size: 34px; }
+
+.bottom-block {
+  width: 70%;
+  height: 20%;
+  position: absolute;
+  z-index: 10;
+  float: right;
+  bottom: 20px;
+  left: 320px;
+  text-align: center; }
+  .bottom-block__item-to-sale {
+    margin-top: 10px;
+    color: white;
+    font-size: 60px; }
+  .bottom-block__marquee {
+    color: black;
+    margin-top: 22px;
+    font-size: 28px; }

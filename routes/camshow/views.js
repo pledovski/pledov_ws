@@ -10,6 +10,7 @@ router.route("/").get(async (req, res, next) => {
 });
 
 router.route("/frame").get(async (req, res, next) => {
+  console.log("object");
   res.render("./camshow/frame");
 });
 

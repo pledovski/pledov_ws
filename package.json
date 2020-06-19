@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server",
     "dev": "nodemon server",
-    "compile:sass": "node-sass sass/main.scss public/css/main.css -w",
+    "compile:sass": "node-sass sass/main.scss public/css//camshow/frame.css -w",
     "build:css": "tailwind build tw-src/style.css -o public/css/camshow/style.css"
   },
   "repository": {

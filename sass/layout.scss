@@ -1,32 +1,32 @@
-.background {
-  width: 225vw;
-  height: 225vh;
-  position: fixed;
-  top: -62.5%;
-  left: -62.5%;
-  z-index: -1;
-  padding: 0;
-  animation: rotation 90s infinite linear;
-  background-image: linear-gradient(
-      217deg,
-      rgba(255, 0, 0, 0.8),
-      rgba(255, 0, 0, 0) 50.71%
-    ),
-    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
-    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
-}
+// .background {
+//   width: 225vw;
+//   height: 225vh;
+//   position: fixed;
+//   top: -62.5%;
+//   left: -62.5%;
+//   z-index: -1;
+//   padding: 0;
+//   animation: rotation 90s infinite linear;
+//   background-image: linear-gradient(
+//       217deg,
+//       rgba(255, 0, 0, 0.8),
+//       rgba(255, 0, 0, 0) 50.71%
+//     ),
+//     linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+//     linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+// }
 
-.page-text {
-  text-align: center;
-  padding-top: 50vh;
-  color: black;
-}
+// .page-text {
+//   text-align: center;
+//   padding-top: 50vh;
+//   color: black;
+// }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
+// @keyframes rotation {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(359deg);
+//   }
+// }
