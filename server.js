@@ -25,6 +25,7 @@ app.set("views", "./views");
 
 // Routes
 const camshow_views = require("./routes/camshow/views");
+const index_view = require("./routes/index");
 
 const discogs = require("./routes/camshow/discogs");
 const records = require("./routes/camshow/records");
@@ -45,6 +46,7 @@ app.use("/camshow/discogs", discogs);
 app.use("/camshow/records", records);
 app.use("/camshow/shows", shows);
 app.use("/camshow", camshow_views);
+app.use("/", index_view);
 
 app.use(errorHandler);
 
