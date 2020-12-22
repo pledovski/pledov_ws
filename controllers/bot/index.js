@@ -11,12 +11,6 @@ const addNewContent = async (msg) => {
     const text = msg.text;
     const chatId = msg.chat.id;
     const content = await Content.create({ pageTitle: "BERCH XYI!", pageText: text });
-    // if (!content) {
-    //   await Content.create({
-    //     pageTitle: "Who is Berch?",
-    //     pageText: text,
-    //   });
-    // }
     bot.sendMessage(chatId, "Content changed");
   } catch (err) {
     console.error(err);

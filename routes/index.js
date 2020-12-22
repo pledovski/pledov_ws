@@ -4,9 +4,6 @@ const Content = require("../models/content");
 
 router.route("/").get(async (req, res, next) => {
   const content = await Content.find({}).sort({ createdAt: 1 });
-  if (!content.pageTitle) {
-    content.pageTitle = "BERCH XYI!";
-  }
   res.render("index", content);
 });
 
