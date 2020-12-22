@@ -6,7 +6,7 @@ const path = require("path");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 
-// const pledBot = require("./controllers/bot/index");
+const pledBot = require("./controllers/bot/index");
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 
@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Bot
-// pledBot();
+pledBot();
 
 //Mount view routes
 app.use("/camshow/discogs", discogs);
@@ -53,9 +53,7 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, "127.0.0.1", () => {
-  console.log(
-    `Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
-  );
+  console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
 
 const ws_server = require("./ws_server").ws_server;
