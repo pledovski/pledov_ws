@@ -1,16 +1,12 @@
 const ErrorResponse = require("../../utils/errorResponse");
 const Discogs = require("disconnect").Client;
 
+const discogs = new Discogs({ userToken: `${process.env.DISCOGS_TOKEN}` });
+
 const get_release = async (release_id) => {
-  const db = new Discogs({
-    userToken: `${process.env.DISCOGS_TOKEN}`,
-  }).database();
-
-  let price = await get_price(release_id);
-
   try {
-    let release_data = await db.getRelease(release_id);
-    release_data.suggested_price = price;
+    let release_data = await discogs.database().getRelease(release_id);
+    release_data.suggested_price = await get_price(release_id);
     return release_data;
   } catch (err) {
     console.log(err);
@@ -18,35 +14,31 @@ const get_release = async (release_id) => {
 };
 
 const get_price = async (release_id) => {
-  let mp = new Discogs({
-    userToken: `${process.env.DISCOGS_TOKEN}`,
-  }).marketplace();
-
   try {
-    let price = await mp.getPriceSuggestions(release_id);
+    let price = await discogs.marketplace().getPriceSuggestions(release_id);
     return price;
   } catch (err) {
     console.log(err);
   }
 };
 
-exports.create_record = async (req) => {
+exports.get_record = async (req) => {
   let release_id = req.body.discogs_url.split("/").pop();
 
   let release_data = await get_release(release_id);
-  console.log(req.body);
 
-  let record_data = {};
-  record_data.show_id = req.body.show_id;
-  record_data.price = req.body.price;
-  record_data.discogs_url = req.body.discogs_url;
-  record_data.condition = req.body.condition;
-  record_data.release_id = release_id;
-  record_data.artist = release_data.artists_sort;
-  record_data.title = release_data.title;
-  record_data.style = release_data.styles[0];
-  record_data.year = release_data.released;
-  record_data.image = release_data.images[0].uri;
+  let record_data = {
+    show_id: req.body.show_id,
+    price: req.body.price,
+    discogs_url: req.body.discogs_url,
+    condition: req.body.condition,
+    release_id: release_id,
+    artist: release_data.artists_sort,
+    title: release_data.title,
+    style: release_data.styles[0],
+    year: release_data.released,
+    image: release_data.images[0].uri,
+  };
 
   // Debt
   // record_data.price_discogs = release_data.suggested_price;
@@ -89,11 +81,7 @@ exports.getMostWanted = async (req, res) => {
           (record.release.stats.community.in_wantlist * 100) /
           record.release.stats.community.in_collection;
         let reasonablePrice = record.price.value;
-        if (
-          recordRating > min &&
-          recordRating < max &&
-          reasonablePrice <= maxPrice
-        ) {
+        if (recordRating > min && recordRating < max && reasonablePrice <= maxPrice) {
           mostWanted.push(record);
         }
       }
@@ -101,9 +89,7 @@ exports.getMostWanted = async (req, res) => {
       console.log(err);
     }
   }
-  res
-    .status(200)
-    .send({ successful: true, count: mostWanted.length, data: mostWanted });
+  res.status(200).send({ successful: true, count: mostWanted.length, data: mostWanted });
 };
 
 exports.getWantlist = async (req, res) => {

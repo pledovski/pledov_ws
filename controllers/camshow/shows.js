@@ -34,9 +34,7 @@ exports.delete_show = asyncHandler(async (req, res, next) => {
   console.log(req.params.show_id);
   let show = await Show.findById(req.params.show_id);
   if (!show) {
-    return next(
-      new ErrorResponse(`Show not found with id of ${req.params.show_id}`, 404)
-    );
+    return next(new ErrorResponse(`Show not found with id of ${req.params.show_id}`, 404));
   }
 
   show.remove();
@@ -53,8 +51,16 @@ exports.update_show = asyncHandler(async (req, res, next) => {
   });
 
   if (!show) {
-    return next(
-      new ErrorResponse(`Show not found with id of ${req.params.show_id}`, 404)
-    );
+    return next(new ErrorResponse(`Show not found with id of ${req.params.show_id}`, 404));
   }
+  res.status(200).json({ success: true, data: show, message: "Show updated." });
+});
+
+// @desc    Activate frame
+// @route   Get /camshow/shows/:show_id/activate
+// @access  Private
+exports.activate_frame = asyncHandler(async (req, res, next) => {
+  await Show.updateMany({}, { is_active: false });
+  let show = await Show.findByIdAndUpdate(req.params.show_id, { is_active: true }, { new: true });
+  res.status(200).json({ success: true, data: show, message: "Frame is active." });
 });

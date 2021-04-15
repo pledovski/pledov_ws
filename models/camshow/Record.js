@@ -48,16 +48,13 @@ const RecordSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "User",
   },
-  status: {
-    type: String,
-    enum: ["inactive", "active"],
-    default: "inactive",
-  },
+  is_active: { type: Boolean, default: false },
   image: {
     type: String,
   },
+  is_active: { type: Boolean, default: false },
 });
 
-RecordSchema.index({ show_id: 1, release_id: 1 }, { unique: true });
+// RecordSchema.index({ show_id: 1, release_id: 1 }, { unique: true });
 
 module.exports = mongoose.model("Record", RecordSchema);

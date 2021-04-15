@@ -39,6 +39,7 @@ const ShowSchema = new mongoose.Schema(
       enum: ["past", "planned", "happening"],
       default: "planned",
     },
+    is_active: Boolean,
   },
   {
     toJSON: { virtuals: true },

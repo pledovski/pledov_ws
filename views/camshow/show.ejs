@@ -7,11 +7,9 @@
     <title><%= page_content.show.show_name %></title>
   </head>
   <body class="antialiased font-sans bg-gray-200">
-    <div class="container mx-auto px-4 sm:px-8">
+    <div class="container mx-auto">
       <div class="py-8">
-        <h2 class="my-2 text-2xl font-semibold leading-tight self-end">
-          Records
-        </h2>
+        <h2 class="my-2 text-2xl font-semibold leading-tight self-end">Records</h2>
         <form class="flex flex-col md:flex-row" id="record-form">
           <div class="my-2 p-1 bg-white flex border border-gray-200 rounded">
             <input
@@ -29,14 +27,11 @@
               />
             </div>
           </div>
-          <select
-            class="mx-2 flex-1 h-10 mt-2 form-select w-full"
-            id="record-condition"
-          >
+          <!-- <select class="mx-2 flex-1 h-10 mt-2 form-select w-full" id="record-condition">
             <option value="ЛЮКС">ЛЮКС</option>
             <option value="УДОВЛ">УДОВЛ</option>
             <option value="БОДРОЕ">БОДРОЕ</option>
-          </select>
+          </select> -->
           <button
             type="submit"
             id="add-record"
@@ -45,10 +40,8 @@
             Add
           </button>
         </form>
-        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-          <div
-            class="inline-block min-w-full shadow rounded-lg overflow-hidden"
-          >
+        <div class="-mx-4 sm:-mx-8 py-4 overflow-x-auto">
+          <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
             <table class="min-w-full leading-normal" id="record-table">
               <thead>
                 <tr>
@@ -67,11 +60,11 @@
                   >
                     Label
                   </th>
-                  <th
+                  <!-- <th
                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                   >
                     Condition
-                  </th>
+                  </th> -->
                   <th
                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                   >
@@ -93,54 +86,30 @@
                 <% for(let record of page_content.show.records) { %>
                 <tr>
                   <td
-                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                    class="px-5 py-5 border-b border-gray-200 text-sm <%= record.is_active ? 'bg-blue-200' : 'bg-white'%>"
                   >
                     <div class="flex items-center">
                       <div class="flex-shrink-0 w-10 h-10">
-                        <img
-                          class="w-full h-full rounded-lg"
-                          src="<%= record.image %>"
-                          alt=""
-                        />
+                        <img class="w-full h-full rounded-lg" src="<%= record.image %>" alt="" />
                       </div>
                       <div class="ml-3">
-                        <p class="text-gray-900 whitespace-no-wrap">
-                          <%= record.artist %>
-                        </p>
+                        <p class="text-gray-900 whitespace-no-wrap"><%= record.artist %></p>
                       </div>
                     </div>
                   </td>
-                  <td
-                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                  >
-                    <p class="text-gray-900 whitespace-no-wrap">
-                      <%= record.title %>
-                    </p>
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap"><%= record.title %></p>
                   </td>
-                  <td
-                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                  >
-                    <p class="text-gray-900 whitespace-no-wrap">
-                      <%= record.label %>
-                    </p>
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap"><%= record.label %></p>
                   </td>
-                  <td
-                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                  >
-                    <p class="text-gray-900 whitespace-no-wrap">
-                      <%= record.condition %>
-                    </p>
+                  <!-- <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap"><%= record.condition %></p>
+                  </td> -->
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap"><%= record.discogs_price %></p>
                   </td>
-                  <td
-                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                  >
-                    <p class="text-gray-900 whitespace-no-wrap">
-                      <%= record.discogs_price %>
-                    </p>
-                  </td>
-                  <td
-                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                  >
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <span
                       class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
                     >
@@ -151,11 +120,15 @@
                       <span class="relative"><%= record.price %></span>
                     </span>
                   </td>
-                  <td
-                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                  >
+                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm flex flex-row">
                     <button
-                      id="<%= record._id %>"
+                      data-id="<%= record._id %>"
+                      class="inline-flex items-center justify-center px-4 py-2 text-base leading-5 rounded-md border font-medium shadow-sm transition ease-in-out duration-150 focus:outline-none focus:shadow-outline text-gray-100 hover:bg-green-500 hover:border-green-500 hover:text-gray-100 actvate-record-btn <%= record.is_active ? 'bg-green-600 border-green-600' : 'bg-gray-300 border-gray-300'%>"
+                    >
+                      V
+                    </button>
+                    <button
+                      data-id="<%= record._id %>"
                       class="inline-flex items-center justify-center px-4 py-2 text-base leading-5 rounded-md border font-medium shadow-sm transition ease-in-out duration-150 focus:outline-none focus:shadow-outline bg-red-600 border-red-600 text-gray-100 hover:bg-red-500 hover:border-red-500 hover:text-gray-100 delete-record-btn"
                     >
                       X
@@ -170,6 +143,6 @@
       </div>
     </div>
   </body>
-  <script src="/js/utils/easy_http.js"></script>
+  <script src="/js/common.js"></script>
   <script src="/js/show_settings.js"></script>
 </html>

@@ -1,7 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const bodyParser = require("body-parser");
 const path = require("path");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
@@ -32,14 +31,14 @@ const records = require("./routes/camshow/records");
 const shows = require("./routes/camshow/shows");
 
 // Init middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //Static files
 app.use(express.static(path.join(__dirname, "public")));
 
 // Bot
-pledBot();
+// pledBot();
 
 //Mount view routes
 app.use("/camshow/discogs", discogs);
@@ -50,10 +49,24 @@ app.use("/", index_view);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+let PORT;
+let IP;
+if (process.env.NODE_ENV === "development") {
+  PORT = 5000;
+  IP = "192.168.1.93";
+} else {
+  PORT = process.env.PORT || 6000;
+  IP = "127.0.0.1";
+}
 
-app.listen(PORT, "127.0.0.1", () => {
-  console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+app.listen(PORT, IP, () => {
+  console.log(`Server running in ${process.env.NODE_ENV} mode on ${IP}:${PORT}`);
 });
 
-const ws_server = require("./ws_server").ws_server;
+// const PORT = process.env.PORT || 5000;
+
+// app.listen(PORT, "127.0.0.1", () => {
+//   console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+// });
+
+// const ws_server = require("./ws_server").ws_server;

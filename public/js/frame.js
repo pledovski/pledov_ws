@@ -1,42 +1,31 @@
-// const CHAR_RETURN = 13;
+let currently_playing = "";
 
-// const socket = new WebSocket(`wss://${window.location.hostname}/camshow/frame`);
-// console.log(window.location.hostname);
-// const chat = document.getElementById("chat");
-// const msg = document.getElementById("msg");
-// const stripe = document.getElementById("stripe");
-// msg.focus();
+let price = q("#price-value");
+let track_info = q("#track-info");
+let release_cover = q("#cover");
 
-// const writeLine = (text) => {
-//   const line = document.createElement("div");
-//   stripe.innerText = `${text}`;
-//   // chat.appendChild(line);
-// };
+async function update_frame() {
+  let response = await easyHTTP.get(`/camshow/records/current`);
+  if (response.data.id != currently_playing) {
+    price.innerText = response.data.price;
+    track_info.innerText = response.data.artist + " - " + response.data.title;
+    release_cover.src = response.data.image;
+    currently_playing = response.data._id;
+  }
+}
+setInterval(update_frame, 1000);
 
-// socket.onopen = () => {
-//   writeLine("connected");
-// };
+let frame = q(".frame");
 
-// socket.onclose = () => {
-//   writeLine("closed");
-// };
-
-// socket.onmessage = (event) => {
-//   writeLine(event.data);
-// };
-
-// msg.addEventListener("keydown", (event) => {
-//   if (event.keyCode === CHAR_RETURN) {
-//     const s = msg.value;
-//     msg.value = "";
-//     writeLine(s);
-//     socket.send(s);
-//   }
-// });
-
-const source = new EventSource(
-  "https://streaming-graph.facebook.com/655518188330177/live_comments?access_token=EAAp80KgZBZBQYBAEJ5JDdMMiZBqrH4lRJkmuRZBDAf4t9R3ZAQ9NjZAuXMdXRgcfQh43GTBYl8tPkLMIf10IXb9PHuKW2htGcdyH750uTjLRzjLWhr5yExXKcFfdtJ9MEgZCACeZChDAJgqfTuGcV6oGyu4cTqTqoMn4aGy7AOyD1rFGvqWNRtJNwUpZBqzr7Cxhcy9lcwunRi0ON8xnIOs63xsdLv4CEsyw1AlsPPO7m6AZDZD&comment_rate=one_per_two_seconds&fields=from{name,id},message"
-);
-source.onmessage = function (event) {
-  console.log(event.message);
+let frame_is_active = false;
+const check_frame = async () => {
+  console.log(frame_is_active);
+  let response = await easyHTTP.get(`/camshow/shows/5ec679289562947e240e8a06`);
+  if (response.data.is_active != frame_is_active) {
+    frame_is_active = !frame_is_active;
+  }
+  frame.style.visibility = "hidden";
+  frame_is_active ? (frame.style.visibility = "visible") : (frame.style.visibility = "hidden");
 };
+
+setInterval(check_frame, 1000);

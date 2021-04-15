@@ -12,9 +12,7 @@ const WS_PORT = process.env.WS_PORT || 5000;
 const ws_server = http.createServer(app);
 
 ws_server.listen(WS_PORT, "127.0.0.1", () => {
-  console.log(
-    `Websocket server is running in ${process.env.NODE_ENV} mode on port ${WS_PORT}`
-  );
+  console.log(`Websocket server is running in ${process.env.NODE_ENV} mode on port ${WS_PORT}`);
 });
 
 const ws = new WebSocketServer({

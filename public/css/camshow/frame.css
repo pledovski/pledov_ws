@@ -9,78 +9,86 @@ body {
   width: 1280px;
   height: 720px; }
 
-.frame {
-  width: 100%;
-  height: 100%;
+.background {
+  width: 225vw;
+  height: 225vh;
+  position: fixed;
+  top: -62.5%;
+  left: -62.5%;
+  z-index: -1;
+  padding: 0;
+  animation: rotation 90s infinite linear;
+  background-image: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 50.71%), linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%); }
+
+.page-text {
+  text-align: center;
+  padding-top: 50vh;
+  color: black; }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(359deg); } }
+
+body {
   position: relative; }
-  .frame > img {
-    position: absolute; }
 
-.left-block {
-  position: absolute;
-  z-index: 10;
-  width: 20%;
-  height: 100%;
-  float: left;
-  top: 160px;
-  left: 40px; }
-  .left-block__title {
+.frame {
+  background-color: aquamarine; }
+  .frame h3 {
+    font-size: 24px;
+    text-transform: uppercase; }
+  .frame h1 {
+    font-size: 60px;
+    color: red;
+    text-transform: uppercase; }
+  .frame h4 {
+    text-transform: uppercase;
+    font-size: 24px;
+    color: white; }
+  .frame p {
+    font-size: 20px; }
+  .frame__check {
     position: absolute;
-    color: white;
-    font-size: 22px;
-    line-height: 27px;
-    top: 8px;
-    left: 20px; }
-  .left-block__description {
-    position: absolute;
-    top: 110px;
-    left: 20px;
-    font-size: 28px; }
-  .left-block__price {
-    position: absolute;
-    top: 155px;
-    left: 20px;
-    font-size: 22px; }
-    .left-block__price--num {
-      position: absolute;
-      top: 185px;
-      left: 20px;
-      font-size: 48px; }
-  .left-block .bage {
-    position: absolute;
-    top: 280px;
-    right: -10px;
-    transform: rotate(-15deg);
+    bottom: 320px;
+    left: 65px;
     text-align: center; }
-    .left-block .bage > p {
-      font-size: 24px;
-      color: white; }
-    .left-block .bage > h2 {
-      font-size: 56px;
-      color: white;
-      line-height: 40px; }
-  .left-block .condition {
+    .frame__check h1 {
+      color: red; }
+  .frame__track-cover {
     position: absolute;
-    top: 420px;
-    left: 20px;
-    text-align: center;
+    background-color: azure;
+    height: 200px;
+    width: 207px;
+    bottom: 78px;
+    left: 40px; }
+  .frame__track {
+    position: absolute;
+    bottom: 78px;
+    right: 36px;
+    display: flex;
+    width: 965px;
+    height: 124px;
+    flex-direction: column;
+    overflow: hidden; }
+    .frame__track h4 {
+      align-self: flex-end;
+      color: white;
+      margin-right: 38px;
+      margin-top: 6px; }
+    .frame__track h1 {
+      color: black;
+      margin-left: 20px;
+      margin-top: 18px; }
+  .frame__marquee {
+    position: absolute;
     color: white;
-    font-size: 34px; }
-
-.bottom-block {
-  width: 70%;
-  height: 20%;
-  position: absolute;
-  z-index: 10;
-  float: right;
-  bottom: 20px;
-  left: 320px;
-  text-align: center; }
-  .bottom-block__item-to-sale {
-    margin-top: 10px;
-    color: white;
-    font-size: 60px; }
-  .bottom-block__marquee {
-    color: black;
-    margin-top: 22px;
-    font-size: 28px; }
+    bottom: 22px;
+    left: 40px;
+    display: flex;
+    width: 1200px; }
+    .frame__marquee h4 {
+      margin-bottom: 2px; }
+    .frame__marquee p {
+      margin: 3px 0 0 20px; }
