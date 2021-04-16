@@ -5,15 +5,6 @@ const router = express.Router();
 const { get_admin_view, get_show_view } = require("../../models/camshow/View");
 
 router.route("/frame").get(async (req, res, next) => {
-  try {
-    let response = await axios.get(
-      "https://streaming-graph.facebook.com/1376927689347575/live_comments"
-    );
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-  }
-
   res.render("./camshow/frame");
 });
 
