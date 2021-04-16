@@ -38,12 +38,7 @@
         xfbml: true,
         version: "v10.0",
       });
-      // FB.getLoginStatus(function (response) {
-      //   if (response.status === "connected") {
-      //     var accessToken = response.authResponse.accessToken;
-      //   }
-      // });
-      FB.api(
+      let comments = FB.api(
         "/807234366665480/comments",
         {
           access_token:
@@ -51,12 +46,13 @@
         },
         function (response) {
           if (response && !response.error) {
-            console.log(response);
+            return response;
             /* handle the result */
           }
-          console.log(1, response);
+          // console.log(1, response);
         }
       );
+      console.log(comments);
     };
   </script>
   <script
