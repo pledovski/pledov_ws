@@ -5,7 +5,7 @@ const path = require("path");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 
-const pledBot = require("./controllers/bot/index");
+// const pledBot = require("./controllers/bot/index");
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 
