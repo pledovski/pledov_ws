@@ -89,3 +89,11 @@ window.fbAsyncInit = function () {
     }
   );
 };
+
+var source = new EventSource(
+  "https://streaming-graph.facebook.com/807234366665480/live_comments?access_token={EAACdyNW4CkgBAFs2dlkwDNMg0uAwireUC7hpaPu4lWDkAh52No6lizHrBGg2cu51QRho8dUW7lDRMNTZCpLEzLZA2GjxV63zWOqpKZAB1sBmrVtCiRI8OVI7SKV7IZCEaOlFrKsilt2ZAveIRFalfBSWwYR3Dm5Prsz4vhsSr1YwphWk0WRWB82dTZBOGKeloQMCcpEt7fNKPgkMUxt8eN28C616CqmXrcsyX8fyatiwlZCDKK6eLplVmjWZC0oGQSkZD}&comment_rate=one_per_two_seconds&fields=from{name,id},message"
+);
+source.onmessage = function (event) {
+  console.log(event);
+  // Do something with event.message for example
+};
