@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-const Content = require("../../models/content");
+const Content = require("../../models/Content");
 const TelegramBot = require("node-telegram-bot-api");
 dotenv.config({ path: "./config/config.env" });
 

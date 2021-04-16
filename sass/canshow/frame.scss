@@ -11,18 +11,20 @@ body {
     font-size: 60px;
     color: red;
     text-transform: uppercase;
+    text-align: center;
   }
   h4 {
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 30px;
     color: white;
   }
   p {
-    font-size: 20px;
+    font-size: 30px;
+    text-transform: uppercase;
   }
   &__check {
     position: absolute;
-    bottom: 320px;
+    bottom: 310px;
     left: 65px;
     text-align: center;
     h1 {
@@ -39,18 +41,18 @@ body {
   }
   &__track {
     position: absolute;
-    bottom: 78px;
+    bottom: 85px;
     right: 36px;
     display: flex;
     width: 965px;
     height: 124px;
     flex-direction: column;
     overflow: hidden;
-    h4 {
+    h3 {
       align-self: flex-end;
       color: white;
       margin-right: 38px;
-      margin-top: 6px;
+      margin-top: 12px;
     }
     h1 {
       color: black;
@@ -61,15 +63,119 @@ body {
   &__marquee {
     position: absolute;
     color: white;
-    bottom: 22px;
+    bottom: 18px;
     left: 40px;
     display: flex;
     width: 1200px;
     h4 {
       margin-bottom: 2px;
+      width: 25%;
+      white-space: nowrap;
     }
     p {
-      margin: 3px 0 0 20px;
+      // margin: 0 0 0 20px;
     }
+  }
+}
+
+div.main {
+  width: 75%;
+  overflow: hidden;
+  background-color: transparent;
+  height: auto;
+}
+div.slide-right p {
+  -moz-animation: 10s slide-right;
+  -webkit-animation: 10s slide-right;
+  -o-animation: 10s slide-right;
+  animation: 10s slide-right;
+  margin: 0;
+}
+div.slide-left p {
+  -moz-animation: 10s slide-left;
+  -webkit-animation: 10s slide-left;
+  -o-animation: 10s slide-left;
+  animation: 10s slide-left;
+  margin: 0;
+}
+@-webkit-keyframes slide-right {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@-moz-keyframes slide-right {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@-o-keyframes slide-right {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@keyframes slide-right {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes slide-left {
+  from {
+    margin-left: 0%;
+    width: 100%;
+  }
+  to {
+    margin-left: -100%;
+    width: 300%;
+  }
+}
+@-moz-keyframes slide-left {
+  from {
+    margin-left: 0%;
+    width: 100%;
+  }
+  to {
+    margin-left: -100%;
+    width: 300%;
+  }
+}
+@-o-keyframes slide-left {
+  from {
+    margin-left: 0%;
+    width: 100%;
+  }
+  to {
+    margin-left: -100%;
+    width: 300%;
+  }
+}
+@keyframes slide-left {
+  from {
+    margin-left: 0%;
+    width: 100%;
+  }
+  to {
+    margin-left: -100%;
+    width: 300%;
   }
 }

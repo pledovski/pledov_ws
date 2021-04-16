@@ -29,3 +29,46 @@ const check_frame = async () => {
 };
 
 setInterval(check_frame, 1000);
+
+// Marquee
+let title = ["Я "];
+
+let index = 0;
+function change_title() {
+  q(".main>p").innerText = title[index];
+  index++;
+  if (index >= title.length) {
+    index = 0;
+  }
+}
+
+function change_left() {
+  q(".main").classList.remove("slide-right");
+  q(".main").classList.add("slide-left");
+}
+
+function change_right() {
+  q(".main").classList.remove("slide-left");
+  q(".main").classList.add("slide-right");
+  change_title();
+}
+
+function to_left() {
+  setInterval(change_left, 10000);
+}
+
+function to_right() {
+  setInterval(change_right, 20000);
+}
+
+to_left();
+to_right();
+
+// ========================================================== Facebook / comments
+// var source = new EventSource(
+//   "https://streaming-graph.facebook.com/{live-video-id}/live_comments?access_token={EAAp80KgZBZBQYBAJSX0CfXVYRfnT19eL79WVaERRyVlxsuCi1LFjglpYcx1qeHQhIvxBUfI48AQZCrSNO83tRiOOybXksEXmv3BoaugZANtmMYTFvIrNLkXWCU4GRe1mqm8AtFnQMRkdwQk4gCQyG09a2mT1ggyCl9Ms4YOGg9yq1ZCd0NeLsvuGgZBI4xyB7UZCynzi7CZBOjikpWWDpjku}&comment_rate=one_per_two_seconds&fields=from{name,id},message"
+// );
+// source.onmessage = function (event) {
+//   console.log(event);
+//   // Do something with event.message for example
+// };

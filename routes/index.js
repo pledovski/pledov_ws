@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Content = require("../models/content");
+const Content = require("../models/Content");
 
 router.route("/").get(async (req, res, next) => {
   const content = await Content.findOne({}).sort({ createdAt: -1 });
