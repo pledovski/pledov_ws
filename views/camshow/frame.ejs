@@ -31,14 +31,14 @@
     </div>
   </body>
   <script>
-    window.fbAsyncInit = function () {
+    window.fbAsyncInit = async function () {
       FB.init({
         appId: "173485904628296",
         autoLogAppEvents: true,
         xfbml: true,
         version: "v10.0",
       });
-      let comments = FB.api(
+      let comments = await FB.api(
         "/807234366665480/comments",
         {
           access_token:
