@@ -31,7 +31,7 @@ const check_frame = async () => {
 setInterval(check_frame, 1000);
 
 // Marquee
-let title = ["Я "];
+let title = ["Я"];
 
 let index = 0;
 function change_title() {
@@ -64,11 +64,28 @@ function to_right() {
 to_left();
 to_right();
 
-// ========================================================== Facebook / comments
-// var source = new EventSource(
-//   "https://streaming-graph.facebook.com/{live-video-id}/live_comments?access_token={EAAp80KgZBZBQYBAJSX0CfXVYRfnT19eL79WVaERRyVlxsuCi1LFjglpYcx1qeHQhIvxBUfI48AQZCrSNO83tRiOOybXksEXmv3BoaugZANtmMYTFvIrNLkXWCU4GRe1mqm8AtFnQMRkdwQk4gCQyG09a2mT1ggyCl9Ms4YOGg9yq1ZCd0NeLsvuGgZBI4xyB7UZCynzi7CZBOjikpWWDpjku}&comment_rate=one_per_two_seconds&fields=from{name,id},message"
-// );
-// source.onmessage = function (event) {
-//   console.log(event);
-//   // Do something with event.message for example
-// };
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: "173485904628296",
+    autoLogAppEvents: true,
+    xfbml: true,
+    version: "v10.0",
+  });
+  FB.api(
+    "/807234366665480/comments",
+    {
+      access_token:
+        "EAACdyNW4CkgBAFs2dlkwDNMg0uAwireUC7hpaPu4lWDkAh52No6lizHrBGg2cu51QRho8dUW7lDRMNTZCpLEzLZA2GjxV63zWOqpKZAB1sBmrVtCiRI8OVI7SKV7IZCEaOlFrKsilt2ZAveIRFalfBSWwYR3Dm5Prsz4vhsSr1YwphWk0WRWB82dTZBOGKeloQMCcpEt7fNKPgkMUxt8eN28C616CqmXrcsyX8fyatiwlZCDKK6eLplVmjWZC0oGQSkZD",
+    },
+    function (response) {
+      if (response && !response.error) {
+        console.log(response);
+        response.data.forEach((element) => {
+          title.push(element.message);
+        });
+        // title.push(response.data);
+        /* handle the result */
+      }
+    }
+  );
+};

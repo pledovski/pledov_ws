@@ -30,39 +30,12 @@
       <img src="/src/frame/frame_complete_2.svg" alt="блять, рамка пропала" />
     </div>
   </body>
-  <script>
-    window.fbAsyncInit = async function () {
-      FB.init({
-        appId: "173485904628296",
-        autoLogAppEvents: true,
-        xfbml: true,
-        version: "v10.0",
-      });
-      let comments = await FB.api(
-        "/807234366665480/comments",
-        {
-          access_token:
-            "EAACdyNW4CkgBAFs2dlkwDNMg0uAwireUC7hpaPu4lWDkAh52No6lizHrBGg2cu51QRho8dUW7lDRMNTZCpLEzLZA2GjxV63zWOqpKZAB1sBmrVtCiRI8OVI7SKV7IZCEaOlFrKsilt2ZAveIRFalfBSWwYR3Dm5Prsz4vhsSr1YwphWk0WRWB82dTZBOGKeloQMCcpEt7fNKPgkMUxt8eN28C616CqmXrcsyX8fyatiwlZCDKK6eLplVmjWZC0oGQSkZD",
-        },
-        function (response) {
-          if (response && !response.error) {
-            return response;
-            /* handle the result */
-          }
-          // console.log(1, response);
-        }
-      );
-      setInterval(comments, 10000);
-      console.log(comments);
-    };
-  </script>
+  <script src="/js/common.js"></script>
+  <script src="/js/frame.js"></script>
   <script
     async
     defer
     crossorigin="anonymous"
     src="https://connect.facebook.net/en_US/sdk.js"
   ></script>
-
-  <script src="/js/common.js"></script>
-  <script src="/js/frame.js"></script>
 </html>
