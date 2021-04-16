@@ -99,20 +99,20 @@ div.main {
   width: 75%;
   overflow: hidden;
   background-color: transparent;
-  height: auto; }
+  height: 30px; }
 
 div.slide-right p {
-  -moz-animation: 10s slide-right;
-  -webkit-animation: 10s slide-right;
-  -o-animation: 10s slide-right;
-  animation: 10s slide-right;
+  -moz-animation: 5s slide-right;
+  -webkit-animation: 5s slide-right;
+  -o-animation: 5s slide-right;
+  animation: 5s slide-right;
   margin: 0; }
 
 div.slide-left p {
-  -moz-animation: 10s slide-left;
-  -webkit-animation: 10s slide-left;
-  -o-animation: 10s slide-left;
-  animation: 10s slide-left;
+  -moz-animation: 5s slide-left;
+  -webkit-animation: 5s slide-left;
+  -o-animation: 5s slide-left;
+  animation: 5s slide-left;
   margin: 0; }
 
 @-webkit-keyframes slide-right {
@@ -152,7 +152,7 @@ div.slide-left p {
     margin-left: 0%;
     width: 100%; }
   to {
-    margin-left: -100%;
+    margin-left: -200%;
     width: 300%; } }
 
 @-moz-keyframes slide-left {

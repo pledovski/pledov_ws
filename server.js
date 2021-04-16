@@ -63,10 +63,4 @@ app.listen(PORT, IP, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on ${IP}:${PORT}`);
 });
 
-// const PORT = process.env.PORT || 5000;
-
-// app.listen(PORT, "127.0.0.1", () => {
-//   console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-// });
-
-// const ws_server = require("./ws_server").ws_server;
+const ws_server = require("./ws_server").ws_server;
