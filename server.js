@@ -5,7 +5,7 @@ const path = require("path");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 
-// const pledBot = require("./controllers/bot/index");
+const pledBot = require("./controllers/bot/index");
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 
@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Bot
-// pledBot();
+pledBot();
 
 //Mount view routes
 app.use("/camshow/discogs", discogs);
@@ -53,7 +53,8 @@ let PORT;
 let IP;
 if (process.env.NODE_ENV === "development") {
   PORT = 5000;
-  IP = "192.168.1.93";
+  // IP = "192.168.1.93";
+  IP = "127.0.0.1";
 } else {
   PORT = process.env.PORT || 6000;
   IP = "127.0.0.1";

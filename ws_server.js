@@ -39,6 +39,7 @@ ws.on("request", (req) => {
     });
   });
   source.on("error", function (err) {
+    console.log(1);
     console.log(err);
   });
 
